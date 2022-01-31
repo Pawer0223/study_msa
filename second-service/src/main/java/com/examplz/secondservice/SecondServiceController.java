@@ -20,4 +20,9 @@ public class SecondServiceController {
         log.info("header : {}", header);
         return "Hello World in second Service.";
     }
+
+    @GetMapping("/check")
+    public String check() {
+        return "Hi, there. This is a message from Second Service.";
+    }
 }
