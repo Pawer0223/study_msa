@@ -28,7 +28,7 @@ public class LoggingFilter extends AbstractGatewayFilterFactory<LoggingFilter.Co
             log.info("Logging filter baseMessage: {}", config.getBaseMessage());
 
             if (config.isPreLogger()) {
-                log.info("Logging Filter Start: request id -> {}", request.getId());
+                log.info("Logging Filter Start: rxequest id -> {}", request.getId());
             }
 
             // Custom Post Filter
