@@ -3,8 +3,8 @@ server:
 
 eureka:
   client:
-    register-with-eureka: false
-    fetch-registry: false
+    register-with-eureka: true
+    fetch-registry: true
     service-url:
       defaultZone: http://localhost:8761/eureka
 
@@ -21,8 +21,16 @@ spring:
             preLogger: true
             postLogger: true
       routes:
+        - id: catalog-service
+          uri: lb://CATALOG-SERVICE
+          predicates:
+            - Path=/catalog-service/**
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/**
         - id: first-service
-          uri: http://localhost:8081/
+          uri: lb://MY-FIRST-SERVICE
           predicates:
             - Path=/first-service/**
           filters:
@@ -30,7 +38,7 @@ spring:
 #            - AddResponseHeader=first-response, first-response-header2
             - CustomFilter
         - id: second-service
-          uri: http://localhost:8082/
+          uri: lb://MY-SECOND-SERVICE
           predicates:
             - Path=/second-service/**
           filters:
@@ -38,7 +46,7 @@ spring:
 #            - AddResponseHeader=second-response, second-response-header2
             - name: CustomFilter
             - name: LoggingFilter
-                  args:
-                    baseMessage: Hi, there.
-                    preLogger: true
-                    postLogger: true
+              args:
+                baseMessage: Hi, there.
+                preLogger: true
+                postLogger: true
