@@ -31,3 +31,7 @@ greeting:
 logging:
   level:
     com.example.userservice: DEBUG
+
+token:
+  expiration_time: 86400000
+  secret: N_GOLO_KANG_TAE_SAN
