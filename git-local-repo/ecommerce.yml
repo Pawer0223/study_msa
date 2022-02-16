@@ -1,5 +1,0 @@
-token:
-    expiration_time: 86400000
-
-gateway:
-    ip: localhost
