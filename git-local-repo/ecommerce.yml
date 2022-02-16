@@ -1,6 +1,0 @@
-token:
-    expiration_time: 864000000
-    secret: N_GOLO_KANG_TAE 
-
-gateway:
-    ip: 192.168.0.8

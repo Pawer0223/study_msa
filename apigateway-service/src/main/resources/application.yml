@@ -43,9 +43,17 @@ spring:
             - Path=/user-service/**
             - Method=GET
           filters:
-            - RemoveRequestHeader=Cookie #post로 전달 되는 값은 매번 새로운 데이터처럼 인식하기 위해
+            - RemoveRequestHeader=Cookie
             - RewritePath=/user-service/(?<segment>.*), /$\{segment}
             - AuthorizationHeaderFilter
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/user-service/actuator/**
+            - Method=GET,POST
+          filters:
+            - RemoveRequestHeader=Cookie
+            - RewritePath=/user-service/(?<segment>.*), /$\{segment}
 #        - id: user-service
 #          uri: lb://USER-SERVICE
 #          predicates:
@@ -80,5 +88,12 @@ spring:
                 preLogger: true
                 postLogger: true
 
+
 token:
   secret: N_GOLO_KANG_TAE_SAN
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh, health, beans, httptrace
