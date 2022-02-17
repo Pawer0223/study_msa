@@ -4,8 +4,16 @@ server:
 spring:
     application:
         name: config-service
+    profiles:
+        active: native
     cloud:
         config:
             server:
+                native:
+                    search-locations: file://${user.home}/mygit/study_msa/native-file-repo
                 git:
-                    uri: file://Users/taesan/git-local-repo
+                    uri: https://github.com/Pawer0223/spring-cloud-config
+                    # username: [your username] # if private
+                    # password: [your password] # if private
+                    # uri: file://Users/taesan/git-local-repo
+                    default-label: master
